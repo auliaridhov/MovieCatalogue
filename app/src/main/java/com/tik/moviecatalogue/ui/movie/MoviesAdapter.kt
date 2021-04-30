@@ -38,11 +38,11 @@ class MoviesAdapter  : RecyclerView.Adapter<MoviesAdapter.CourseViewHolder>() {
             with(binding) {
                 tvItemTitle.text = movies.title
                 tvItemDescription.text = movies.overview
-//                itemView.setOnClickListener {
-//                    val intent = Intent(itemView.context, DetailCourseActivity::class.java)
-//                    intent.putExtra(DetailCourseActivity.EXTRA_COURSE, movies.courseId)
-//                    itemView.context.startActivity(intent)
-//                }
+                itemView.setOnClickListener {
+                    val intent = Intent(itemView.context, DetailMovieActivity::class.java)
+                    intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movies.id)
+                    itemView.context.startActivity(intent)
+                }
                 Glide.with(itemView.context)
                     .load(movies.poster_path)
                     .apply(

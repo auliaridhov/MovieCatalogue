@@ -1,7 +1,7 @@
 package com.tik.moviecatalogue.data
 
 data class MoviesEntity(
-    var id: Int,
+    var id: String,
     var title: String,
     var overview: String,
     var release_date: String,
