@@ -42,11 +42,11 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.CourseViewHolder>() {
                 tvItemDescription.text = tvShow.overview
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
-                    intent.putExtra(DetailTvShowActivity.EXTRA_TV, tvShow.id)
+                    intent.putExtra(DetailTvShowActivity.EXTRA_TV, tvShow.id.toString())
                     itemView.context.startActivity(intent)
                 }
                 Glide.with(itemView.context)
-                    .load(tvShow.poster_path)
+                    .load("https://image.tmdb.org/t/p/w500"+tvShow.posterPath)
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
                             .error(R.drawable.ic_error))

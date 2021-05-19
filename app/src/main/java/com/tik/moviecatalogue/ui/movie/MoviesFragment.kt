@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.academies.viewmodel.ViewModelFactory
 import com.tik.moviecatalogue.R
 import com.tik.moviecatalogue.databinding.FragmentMoviesBinding
 
@@ -26,12 +27,18 @@ class MoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
 
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MoviesViewModel::class.java]
-            val movies = viewModel.getMovies()
-
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(this, factory)[MoviesViewModel::class.java]
 
             val moviesAdapter = MoviesAdapter()
-            moviesAdapter.setMovies(movies)
+
+
+            fragmenMoviesBinding.progressBar.visibility = View.VISIBLE
+            viewModel.getMovies().observe(this, { movies ->
+                fragmenMoviesBinding.progressBar.visibility = View.GONE
+                moviesAdapter.setMovies(movies)
+                moviesAdapter.notifyDataSetChanged()
+            })
 
             with(fragmenMoviesBinding.rvMovies) {
                 layoutManager = LinearLayoutManager(context)

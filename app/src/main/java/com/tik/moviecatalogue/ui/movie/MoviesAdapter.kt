@@ -40,11 +40,11 @@ class MoviesAdapter  : RecyclerView.Adapter<MoviesAdapter.CourseViewHolder>() {
                 tvItemDescription.text = movies.overview
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailMovieActivity::class.java)
-                    intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movies.id)
+                    intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movies.id.toString())
                     itemView.context.startActivity(intent)
                 }
                 Glide.with(itemView.context)
-                    .load(movies.poster_path)
+                    .load("https://image.tmdb.org/t/p/w500"+movies.posterPath)
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
                         .error(R.drawable.ic_error))

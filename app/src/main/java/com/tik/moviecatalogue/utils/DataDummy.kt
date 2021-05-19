@@ -2,75 +2,73 @@ package com.tik.moviecatalogue.utils
 
 import com.tik.moviecatalogue.data.MoviesEntity
 import com.tik.moviecatalogue.data.TvShowEntity
-import java.util.ArrayList
+import java.util.*
 
 object DataDummy {
 
     fun generateDummyMovies(): List<MoviesEntity> {
 
+        val genreIds: MutableList<Int> = ArrayList()
+        genreIds.add(21)
+        genreIds.add(32)
+
         val movies = ArrayList<MoviesEntity>()
 
-        movies.add(MoviesEntity("460465",
-            "Mortal Kombat",
-            "Washed-up MMA fighter Cole Young, unaware of his heritage, and hunted by Emperor Shang Tsung's best warrior, Sub-Zero, seeks out and trains with Earth's greatest champions as he prepares to stand against the enemies of Outworld in a high stakes battle for the universe.",
-            "2021-04-07",
-            "https://image.tmdb.org/t/p/w500/6Wdl9N6dL0Hi0T1qJLWSz6gMLbd.jpg",
-            7.9))
-        movies.add(MoviesEntity("635302",
-            "Demon Slayer the Movie: Mugen Train",
-            "Tanjirō Kamado, joined with Inosuke Hashibira, a boy raised by boars who wears a boar's head, and Zenitsu Agatsuma, a scared boy who reveals his true power when he sleeps, boards the Infinity Train on a new mission with the Fire Hashira, Kyōjurō Rengoku, to defeat a demon who has been tormenting the people and killing the demon slayers who oppose it!",
-            "2020-10-16",
-            "https://image.tmdb.org/t/p/w500/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg",
-            8.2,))
-        movies.add(MoviesEntity("736069",
-            "Justice Society: World War II",
-            "While speeding off to help in an impromptu battle, The Flash blazes and rips through time, only to find himself dropped into the middle of World War II. It’s here that The Flash meets Wonder Woman and her top secret team, known as the Justice Society of America. Witness the raging tides of war, gripping combat and the velocity of valor as The Flash fights to get back to his own timeline!",
-            "2021-04-27",
-            "https://image.tmdb.org/t/p/w500/e4REOC6CZW8J6FslA4nRvdQXFXR.jpg",
-            8.3))
-        movies.add(MoviesEntity("581734",
-            "Nomadland",
-            "A woman in her sixties embarks on a journey through the western United States after losing everything in the Great Recession, living as a van-dwelling modern-day nomad.",
-            "2021-01-29",
-            "https://image.tmdb.org/t/p/w500/66GUmWpTHgAjyp4aBSXy63PZTiC.jpg",
-            7.4,))
-        movies.add(MoviesEntity("399566",
-            "Godzilla vs. Kong",
-            "In a time when monsters walk the Earth, humanity’s fight for its future sets Godzilla and Kong on a collision course that will see the two most powerful forces of nature on the planet collide in a spectacular battle for the ages.",
-            "2021-03-24",
-            "https://image.tmdb.org/t/p/w500/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg",
-            8.2))
+        movies.add(
+            MoviesEntity(
+                "Washed-up MMA fighter Cole Young, unaware of his heritage, and hunted by Emperor Shang Tsung's best warrior, Sub-Zero, seeks out and trains with Earth's greatest champions as he prepares to stand against the enemies of Outworld in a high stakes battle for the universe.",
+                "en",
+                "Mortal Kombat",
+                false,
+                "Mortal Kombat",
+                genreIds,
+                "/nkayOAUBUu4mMvyNf9iHSUiPjF1.jpg",
+                "/6ELCZlTA5lGUops70hKdB83WJxH.jpg",
+                "2021-04-07",
+                2612.747,
+                7.6,
+                460465,
+                false,
+                2497
+            )
+        )
+        movies.add(
+            MoviesEntity(
+                "Washed-up MMA fighter Cole Young, unaware of his heritage, and hunted by Emperor Shang Tsung's best warrior, Sub-Zero, seeks out and trains with Earth's greatest champions as he prepares to stand against the enemies of Outworld in a high stakes battle for the universe.",
+                "en",
+                "Godzilla vs. Kong",
+                false,
+                "Godzilla vs. Kong",
+                genreIds,
+                "/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg",
+                "/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg",
+                "2021-03-24",
+                1775.66,
+                8.1,
+                399566,
+                false,
+                5525
+            )
+        )
+        movies.add(
+            MoviesEntity(
+                "Hutch Mansell, a suburban dad, overlooked husband, nothing neighbor — a \\\"nobody.\\\" When two thieves break into his home one night, Hutch's unknown long-simmering rage is ignited and propels him on a brutal path that will uncover dark secrets he fought to leave behind.",
+                "en",
+                "Nobody",
+                false,
+                "Nobody",
+                genreIds,
+                "/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
+                "/6zbKgwgaaCyyBXE4Sun4oWQfQmi.jpg",
+                "2021-03-26",
+                1388.757,
+                8.4,
+                615457,
+                false,
+                1509
+            )
+        )
 
-        movies.add(MoviesEntity("559581",
-            "Stowaway",
-            "A three-person crew on a mission to Mars faces an impossible choice when an unplanned passenger jeopardizes the lives of everyone on board.",
-            "2021-04-22",
-            "https://image.tmdb.org/t/p/w500/yOscLK7KzEPDdi1P8RmevGIjOSp.jpg",
-            6.2))
-        movies.add(MoviesEntity("399566",
-            "The Marksman",
-            "Jim Hanson’s quiet life is suddenly disturbed by two people crossing the US/Mexico border – a woman and her young son – desperate to flee a Mexican cartel. After a shootout leaves the mother dead, Jim becomes the boy’s reluctant defender. He embraces his role as Miguel’s protector and will stop at nothing to get him to safety, as they go on the run from the relentless assassins.",
-            "2021-01-15",
-            "https://image.tmdb.org/t/p/w500/6vcDalR50RWa309vBH1NLmG2rjQ.jpg",
-            7.3))
-        movies.add(MoviesEntity("808023",
-            "The Virtuoso",
-            "A lonesome stranger with nerves of steel must track down and kill a rogue hitman to satisfy an outstanding debt. But the only information he's been given is a time and location where to find his quarry. No name. No description. Nothing.",
-            "2021-04-30",
-            "https://image.tmdb.org/t/p/w500/8RIjjmWZi8tJf5lRxyHGErentsv.jpg",
-            7.0,))
-        movies.add(MoviesEntity("615457",
-            "Nobody",
-            "Hutch Mansell, a suburban dad, overlooked husband, nothing neighbor — a \\\"nobody.\\\" When two thieves break into his home one night, Hutch's unknown long-simmering rage is ignited and propels him on a brutal path that will uncover dark secrets he fought to leave behind.",
-            "2021-03-18",
-            "https://image.tmdb.org/t/p/w500/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
-            8.5))
-        movies.add(MoviesEntity("600354",
-            "The Father",
-            "A man refuses all assistance from his daughter as he ages and, as he tries to make sense of his changing circumstances, he begins to doubt his loved ones, his own mind and even the fabric of his reality.",
-            "2020-12-23",
-            "https://image.tmdb.org/t/p/w500/uxWXW1YYQENSv7OzHB4Hds0bK3b.jpg",
-            8.4))
         return movies
     }
 
@@ -80,67 +78,66 @@ object DataDummy {
 
         val tvShow = ArrayList<TvShowEntity>()
 
-        tvShow.add(TvShowEntity("460465",
-            "Mortal Kombat",
-            "Washed-up MMA fighter Cole Young, unaware of his heritage, and hunted by Emperor Shang Tsung's best warrior, Sub-Zero, seeks out and trains with Earth's greatest champions as he prepares to stand against the enemies of Outworld in a high stakes battle for the universe.",
-            "2021-04-07",
-            "https://image.tmdb.org/t/p/w500/6Wdl9N6dL0Hi0T1qJLWSz6gMLbd.jpg",
-            7.9))
-        tvShow.add(TvShowEntity("635302",
-            "Demon Slayer the Movie: Mugen Train",
-            "Tanjirō Kamado, joined with Inosuke Hashibira, a boy raised by boars who wears a boar's head, and Zenitsu Agatsuma, a scared boy who reveals his true power when he sleeps, boards the Infinity Train on a new mission with the Fire Hashira, Kyōjurō Rengoku, to defeat a demon who has been tormenting the people and killing the demon slayers who oppose it!",
-            "2020-10-16",
-            "https://image.tmdb.org/t/p/w500/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg",
-            8.2,))
-        tvShow.add(TvShowEntity("736069",
-            "Justice Society: World War II",
-            "While speeding off to help in an impromptu battle, The Flash blazes and rips through time, only to find himself dropped into the middle of World War II. It’s here that The Flash meets Wonder Woman and her top secret team, known as the Justice Society of America. Witness the raging tides of war, gripping combat and the velocity of valor as The Flash fights to get back to his own timeline!",
-            "2021-04-27",
-            "https://image.tmdb.org/t/p/w500/e4REOC6CZW8J6FslA4nRvdQXFXR.jpg",
-            8.3))
-        tvShow.add(TvShowEntity("581734",
-            "Nomadland",
-            "A woman in her sixties embarks on a journey through the western United States after losing everything in the Great Recession, living as a van-dwelling modern-day nomad.",
-            "2021-01-29",
-            "https://image.tmdb.org/t/p/w500/66GUmWpTHgAjyp4aBSXy63PZTiC.jpg",
-            7.4,))
-        tvShow.add(TvShowEntity("399566",
-            "Godzilla vs. Kong",
-            "In a time when monsters walk the Earth, humanity’s fight for its future sets Godzilla and Kong on a collision course that will see the two most powerful forces of nature on the planet collide in a spectacular battle for the ages.",
-            "2021-03-24",
-            "https://image.tmdb.org/t/p/w500/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg",
-            8.2))
+        val genreIds: MutableList<Int> = ArrayList()
+        genreIds.add(21)
+        genreIds.add(32)
 
-        tvShow.add(TvShowEntity("559581",
-            "Stowaway",
-            "A three-person crew on a mission to Mars faces an impossible choice when an unplanned passenger jeopardizes the lives of everyone on board.",
-            "2021-04-22",
-            "https://image.tmdb.org/t/p/w500/yOscLK7KzEPDdi1P8RmevGIjOSp.jpg",
-            6.2))
-        tvShow.add(TvShowEntity("399566",
-            "The Marksman",
-            "Jim Hanson’s quiet life is suddenly disturbed by two people crossing the US/Mexico border – a woman and her young son – desperate to flee a Mexican cartel. After a shootout leaves the mother dead, Jim becomes the boy’s reluctant defender. He embraces his role as Miguel’s protector and will stop at nothing to get him to safety, as they go on the run from the relentless assassins.",
-            "2021-01-15",
-            "https://image.tmdb.org/t/p/w500/6vcDalR50RWa309vBH1NLmG2rjQ.jpg",
-            7.3))
-        tvShow.add(TvShowEntity("808023",
-            "The Virtuoso",
-            "A lonesome stranger with nerves of steel must track down and kill a rogue hitman to satisfy an outstanding debt. But the only information he's been given is a time and location where to find his quarry. No name. No description. Nothing.",
-            "2021-04-30",
-            "https://image.tmdb.org/t/p/w500/8RIjjmWZi8tJf5lRxyHGErentsv.jpg",
-            7.0,))
-        tvShow.add(TvShowEntity("615457",
-            "Nobody",
-            "Hutch Mansell, a suburban dad, overlooked husband, nothing neighbor — a \\\"nobody.\\\" When two thieves break into his home one night, Hutch's unknown long-simmering rage is ignited and propels him on a brutal path that will uncover dark secrets he fought to leave behind.",
-            "2021-03-18",
-            "https://image.tmdb.org/t/p/w500/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
-            8.5))
-        tvShow.add(TvShowEntity("600354",
-            "The Father",
-            "A man refuses all assistance from his daughter as he ages and, as he tries to make sense of his changing circumstances, he begins to doubt his loved ones, his own mind and even the fabric of his reality.",
-            "2020-12-23",
-            "https://image.tmdb.org/t/p/w500/uxWXW1YYQENSv7OzHB4Hds0bK3b.jpg",
-            8.4))
+        val originCountry: MutableList<String> = ArrayList()
+        originCountry.add("US")
+        originCountry.add("US")
+
+        tvShow.add(
+            TvShowEntity(
+                "2014-10-07",
+                "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \\\"meta-human\\\" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become...The Flash.",
+                "en",
+                genreIds,
+                "/lJA2RCMfsWoskqlQhXPSLFQGXEJ.jpg",
+                originCountry,
+                "/jeruqNWhqRqOR1QyqdQdHunrvU5.jpg",
+                "The Flash",
+                1067.857,
+                7.7,
+                "The Flash",
+                60735,
+                7623
+            )
+        )
+        tvShow.add(
+            TvShowEntity(
+                "2017-09-25",
+                "A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives",
+                "en",
+                genreIds,
+                "/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg",
+                originCountry,
+                "/mZjZgY6ObiKtVuKVDrnS9VnuNlE.jpg",
+                "The Good Doctor",
+                1087.176,
+                8.6,
+                "The Good Doctor",
+                71712,
+                8402
+            )
+        )
+        tvShow.add(
+            TvShowEntity(
+                "2005-03-27",
+                "Follows the personal and professional lives of a group of doctors at Seattle’s Grey Sloan Memorial Hospital.",
+                "en",
+                genreIds,
+                "/clnyhPqj1SNgpAdeSS6a6fwE6Bo.jpg",
+                originCountry,
+                "/edmk8xjGBsYVIf4QtLY9WMaMcXZ.jpg",
+                "Grey's Anatomy",
+                774.332,
+                8.2,
+                "Grey's Anatomy",
+                1416,
+                6059
+            )
+        )
+
         return tvShow
     }
 
