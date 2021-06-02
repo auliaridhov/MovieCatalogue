@@ -5,7 +5,6 @@ import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dicoding.academies.utils.EspressoIdlingResource
 import com.tik.livedatawithapi.ApiConfig
 import com.tik.moviecatalogue.data.source.remote.response.MovieItem
 import com.tik.moviecatalogue.data.source.remote.response.MoviesResponse
@@ -44,8 +43,10 @@ class RemoteDataSource {
             ) {
                 if (response.isSuccessful) {
                     _movie = response.body()?.results as ArrayList<MovieItem>
+
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
+
                 }
             }
 
@@ -53,8 +54,9 @@ class RemoteDataSource {
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
-        handler.postDelayed({ callback.onAllMovieReceived(_movie) }, SERVICE_LATENCY_IN_MILLIS)
-        EspressoIdlingResource.decrement()
+        handler.postDelayed({ callback.onAllMovieReceived(_movie)
+            EspressoIdlingResource.decrement()}, SERVICE_LATENCY_IN_MILLIS)
+
     }
 
     fun getTvList(callback: LoadTvCallback) {
@@ -76,8 +78,8 @@ class RemoteDataSource {
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
-        handler.postDelayed({ callback.onAllTvReceived(_tv) }, SERVICE_LATENCY_IN_MILLIS)
-        EspressoIdlingResource.decrement()
+        handler.postDelayed({ callback.onAllTvReceived(_tv)
+            EspressoIdlingResource.decrement()}, SERVICE_LATENCY_IN_MILLIS)
     }
 
     fun detailMovie(idMovie: String, callback: LoadDetailMovieCallback) {
@@ -90,8 +92,10 @@ class RemoteDataSource {
             ) {
                 if (response.isSuccessful) {
                     _detailMovie = response.body()!!
+
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
+
                 }
             }
 
@@ -99,8 +103,9 @@ class RemoteDataSource {
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
-        handler.postDelayed({ callback.onDetailMovieReceived(_detailMovie) }, SERVICE_LATENCY_IN_MILLIS)
-        EspressoIdlingResource.decrement()
+        handler.postDelayed({ callback.onDetailMovieReceived(_detailMovie)
+            EspressoIdlingResource.decrement()}, SERVICE_LATENCY_IN_MILLIS)
+
     }
 
     fun detailTv(idTv: String, callback: LoadDetailTvCallback) {
@@ -113,8 +118,10 @@ class RemoteDataSource {
             ) {
                 if (response.isSuccessful) {
                     _detailTv = response.body()!!
+
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
+
                 }
             }
 
@@ -122,8 +129,9 @@ class RemoteDataSource {
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
-        handler.postDelayed({ callback.onDetailTvReceived(_detailTv) }, SERVICE_LATENCY_IN_MILLIS)
-        EspressoIdlingResource.decrement()
+        handler.postDelayed({ callback.onDetailTvReceived(_detailTv)
+            EspressoIdlingResource.decrement()}, SERVICE_LATENCY_IN_MILLIS)
+
     }
 
 

@@ -9,7 +9,6 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.dicoding.academies.utils.EspressoIdlingResource
 import com.tik.moviecatalogue.R
 import com.tik.moviecatalogue.utils.DataDummy
 import org.junit.After
@@ -26,8 +25,6 @@ class HomeActivityTest {
     @get:Rule
     var activityRule = ActivityScenarioRule(HomeActivity::class.java)
 
-
-
     @Before
     fun setUp() {
         ActivityScenario.launch(HomeActivity::class.java)
@@ -41,26 +38,23 @@ class HomeActivityTest {
 
     @Test
     fun loadMovie() {
-        delayThreeSecond()
         onView(withId(R.id.rv_movies)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_movies)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie.size))
     }
 
     @Test
     fun loadDetailMovie() {
-        delayThreeSecond()
         onView(withId(R.id.rv_movies)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        delayThreeSecond()
         onView(withId(R.id.detailTitle)).check(matches(isDisplayed()))
-        onView(withId(R.id.detailTitle)).check(matches(withText(dummyMovie[0].title)))
+        onView(withId(R.id.voteAvg)).check(matches(isDisplayed()))
+        onView(withId(R.id.descDetail)).check(matches(isDisplayed()))
         onView(withId(R.id.dateDetail)).check(matches(isDisplayed()))
-        onView(withId(R.id.dateDetail)).check(matches(withText(dummyMovie[0].releaseDate)))
+
     }
 
     @Test
     fun loadTvShow() {
         onView(withText("Tv Show")).perform(click())
-        delayThreeSecond()
         onView(withId(R.id.rv_tv_show)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_tv_show)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie.size))
     }
@@ -68,13 +62,12 @@ class HomeActivityTest {
     @Test
     fun loadDetailTvShow() {
         onView(withText("Tv Show")).perform(click())
-        delayThreeSecond()
-        onView(withId(R.id.rv_tv_show)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        delayThreeSecond()
+        onView(withId(R.id.rv_tv_show)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(1, click()))
         onView(withId(R.id.detailTitle)).check(matches(isDisplayed()))
-        onView(withId(R.id.detailTitle)).check(matches(withText(dummyTv[0].name)))
+        onView(withId(R.id.voteAvg)).check(matches(isDisplayed()))
+        onView(withId(R.id.descDetail)).check(matches(isDisplayed()))
         onView(withId(R.id.dateDetail)).check(matches(isDisplayed()))
-        onView(withId(R.id.dateDetail)).check(matches(withText(dummyTv[0].firstAirDate)))
+
     }
 
     private fun delayThreeSecond() {

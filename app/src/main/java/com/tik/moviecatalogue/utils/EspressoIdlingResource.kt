@@ -1,5 +1,3 @@
-package com.dicoding.academies.utils
-
 import androidx.test.espresso.idling.CountingIdlingResource
 
 object EspressoIdlingResource {
