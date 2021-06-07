@@ -3,14 +3,15 @@ package com.tik.moviecatalogue.ui.tvshow
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.tik.moviecatalogue.data.MoviesEntity
-import com.tik.moviecatalogue.data.TvShowEntity
+import androidx.paging.PagedList
+import com.tik.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.tik.moviecatalogue.data.source.CatalogueRepository
-import com.tik.moviecatalogue.ui.movie.MoviesViewModel
+import com.tik.moviecatalogue.data.source.local.entity.MoviesEntity
 import com.tik.moviecatalogue.utils.DataDummy
+import com.tik.moviecatalogue.vo.Resource
+import junit.framework.Assert
 import org.junit.Test
 
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.runner.RunWith
@@ -28,8 +29,13 @@ class TvShowViewModelTest {
     @Mock
     private lateinit var catalogueRepository: CatalogueRepository
 
+
+
     @Mock
-    private lateinit var observer: Observer<List<TvShowEntity>>
+    private lateinit var observer: Observer<Resource<PagedList<TvShowEntity>>>
+
+    @Mock
+    private lateinit var pagedList: PagedList<TvShowEntity>
 
     @Before
     fun setUp() {
@@ -38,11 +44,26 @@ class TvShowViewModelTest {
 
     @Test
     fun getTvs() {
-        val resource: List<TvShowEntity> = DataDummy.generateDummyTvShow()
-        val tv: MutableLiveData<List<TvShowEntity>> = MutableLiveData<List<TvShowEntity>>()
-        tv.value = resource
-        Mockito.`when`(catalogueRepository.getAllTv()).thenReturn(tv)
+//        val resource: List<TvShowEntity> = DataDummy.generateDummyTvShow()
+//        val tv: MutableLiveData<List<TvShowEntity>> = MutableLiveData<List<TvShowEntity>>()
+//        tv.value = resource
+//        Mockito.`when`(catalogueRepository.getAllTv()).thenReturn(tv)
+//        viewModel.getTvSHow().observeForever(observer)
+//        Mockito.verify<Observer<List<TvShowEntity>>>(observer).onChanged(resource)
+
+
+        val dummyCourses = Resource.success(pagedList)
+        Mockito.`when`(dummyCourses.data?.size).thenReturn(5)
+        val courses = MutableLiveData<Resource<PagedList<TvShowEntity>>>()
+        courses.value = dummyCourses
+
+        Mockito.`when`(catalogueRepository.getAllTv()).thenReturn(courses)
+        val courseEntities = viewModel.getTvSHow().value?.data
+        Mockito.verify(catalogueRepository).getAllTv()
+        Assert.assertNotNull(courseEntities)
+        Assert.assertEquals(5, courseEntities?.size)
+
         viewModel.getTvSHow().observeForever(observer)
-        Mockito.verify<Observer<List<TvShowEntity>>>(observer).onChanged(resource)
+        Mockito.verify(observer).onChanged(dummyCourses)
     }
 }

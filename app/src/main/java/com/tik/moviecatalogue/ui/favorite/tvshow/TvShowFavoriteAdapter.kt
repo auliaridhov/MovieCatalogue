@@ -1,4 +1,4 @@
-package com.tik.moviecatalogue.ui.tvshow
+package com.tik.moviecatalogue.ui.favorite.tvshow
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -12,10 +12,10 @@ import com.tik.moviecatalogue.R
 import com.tik.moviecatalogue.data.source.local.entity.MoviesEntity
 import com.tik.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.tik.moviecatalogue.databinding.ItemsTvShowBinding
-import com.tik.moviecatalogue.ui.movie.MoviesAdapter
+import com.tik.moviecatalogue.ui.tvshow.DetailTvShowActivity
 import java.util.ArrayList
 
-class TvShowAdapter : PagedListAdapter<TvShowEntity, TvShowAdapter.CourseViewHolder>(TvShowAdapter.DIFF_CALLBACK) {
+class TvShowFavoriteAdapter : PagedListAdapter<TvShowEntity, TvShowFavoriteAdapter.CourseViewHolder>(TvShowFavoriteAdapter.DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TvShowEntity>() {
@@ -27,6 +27,8 @@ class TvShowAdapter : PagedListAdapter<TvShowEntity, TvShowAdapter.CourseViewHol
             }
         }
     }
+
+    fun getSwipedData(swipedPosition: Int): TvShowEntity? = getItem(swipedPosition)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {

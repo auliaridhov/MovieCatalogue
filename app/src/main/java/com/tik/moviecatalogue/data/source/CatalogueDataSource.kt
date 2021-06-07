@@ -1,19 +1,27 @@
 package com.tik.moviecatalogue.data.source
 
 import androidx.lifecycle.LiveData
-import com.tik.moviecatalogue.data.MoviesEntity
-import com.tik.moviecatalogue.data.TvShowEntity
-import com.tik.moviecatalogue.data.source.remote.response.MovieItem
-import com.tik.moviecatalogue.data.source.remote.response.TvShowItem
+import androidx.paging.PagedList
+import com.tik.moviecatalogue.data.source.local.entity.MoviesEntity
+import com.tik.moviecatalogue.data.source.local.entity.TvShowEntity
+import com.tik.moviecatalogue.vo.Resource
 
 interface CatalogueDataSource {
 
-    fun getAllMovie(): LiveData<List<MoviesEntity>>
+    fun getAllMovie(): LiveData<Resource<PagedList<MoviesEntity>>>
 
-    fun getAllTv(): LiveData<List<TvShowEntity>>
+    fun getAllTv(): LiveData<Resource<PagedList<TvShowEntity>>>
 
-    fun getDetailMovie(idMovie: String): LiveData<MoviesEntity>
+    fun getDetailMovie(idMovie: String): LiveData<Resource<MoviesEntity>>
 
-    fun getDetailTv(idTv: String): LiveData<TvShowEntity>
+    fun getDetailTv(idTv: String): LiveData<Resource<TvShowEntity>>
+
+    fun setMovieFavorited(moviesEntity: MoviesEntity, state: Boolean)
+
+    fun setTvFavorited(tvShowEntity: TvShowEntity, state: Boolean)
+
+    fun getFavoritedMovie(): LiveData<PagedList<MoviesEntity>>
+
+    fun getFavoritedTvShow(): LiveData<PagedList<TvShowEntity>>
 
 }

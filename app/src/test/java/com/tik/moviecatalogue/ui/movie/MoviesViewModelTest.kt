@@ -3,17 +3,21 @@ package com.tik.moviecatalogue.ui.movie
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.tik.moviecatalogue.data.MoviesEntity
+import androidx.paging.DataSource
+import androidx.paging.PagedList
+import com.tik.moviecatalogue.data.source.local.entity.MoviesEntity
 import com.tik.moviecatalogue.data.source.CatalogueRepository
-import com.tik.moviecatalogue.data.source.remote.response.MovieItem
 import com.tik.moviecatalogue.utils.DataDummy
-import org.junit.Assert.*
+import com.tik.moviecatalogue.vo.Resource
+import junit.framework.Assert.assertEquals
+import junit.framework.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
 
 
@@ -29,7 +33,10 @@ class MoviesViewModelTest {
     private lateinit var catalogueRepository: CatalogueRepository
 
     @Mock
-    private lateinit var observer: Observer<List<MoviesEntity>>
+    private lateinit var observer: Observer<Resource<PagedList<MoviesEntity>>>
+
+    @Mock
+    private lateinit var pagedList: PagedList<MoviesEntity>
 
     @Before
     fun setUp() {
@@ -39,11 +46,21 @@ class MoviesViewModelTest {
 
     @Test
     fun getMovies() {
-        val resource: List<MoviesEntity> = DataDummy.generateDummyMovies()
-        val movies: MutableLiveData<List<MoviesEntity>> = MutableLiveData<List<MoviesEntity>>()
-        movies.value = resource
-        Mockito.`when`(catalogueRepository.getAllMovie()).thenReturn(movies)
+
+        val dummyCourses = Resource.success(pagedList)
+        `when`(dummyCourses.data?.size).thenReturn(5)
+        val courses = MutableLiveData<Resource<PagedList<MoviesEntity>>>()
+        courses.value = dummyCourses
+
+        `when`(catalogueRepository.getAllMovie()).thenReturn(courses)
+        val courseEntities = viewModel.getMovies().value?.data
+        verify(catalogueRepository).getAllMovie()
+        assertNotNull(courseEntities)
+        assertEquals(5, courseEntities?.size)
+
         viewModel.getMovies().observeForever(observer)
-        Mockito.verify<Observer<List<MoviesEntity>>>(observer).onChanged(resource)
+        verify(observer).onChanged(dummyCourses)
+
+
     }
 }

@@ -1,4 +1,4 @@
-package com.tik.moviecatalogue.ui.tvshow
+package com.tik.moviecatalogue.ui.favorite.movie
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -10,27 +10,29 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.tik.moviecatalogue.R
 import com.tik.moviecatalogue.data.source.local.entity.MoviesEntity
-import com.tik.moviecatalogue.data.source.local.entity.TvShowEntity
-import com.tik.moviecatalogue.databinding.ItemsTvShowBinding
-import com.tik.moviecatalogue.ui.movie.MoviesAdapter
+import com.tik.moviecatalogue.databinding.ItemsMoviesBinding
+import com.tik.moviecatalogue.ui.movie.DetailMovieActivity
 import java.util.ArrayList
 
-class TvShowAdapter : PagedListAdapter<TvShowEntity, TvShowAdapter.CourseViewHolder>(TvShowAdapter.DIFF_CALLBACK) {
+class MovieFavoriteAdapter : PagedListAdapter<MoviesEntity, MovieFavoriteAdapter.CourseViewHolder>(DIFF_CALLBACK)  {
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TvShowEntity>() {
-            override fun areItemsTheSame(oldItem: TvShowEntity, newItem: TvShowEntity): Boolean {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MoviesEntity>() {
+            override fun areItemsTheSame(oldItem: MoviesEntity, newItem: MoviesEntity): Boolean {
                 return oldItem.id == newItem.id
             }
-            override fun areContentsTheSame(oldItem: TvShowEntity, newItem: TvShowEntity): Boolean {
+            override fun areContentsTheSame(oldItem: MoviesEntity, newItem: MoviesEntity): Boolean {
                 return oldItem == newItem
             }
         }
     }
 
+    fun getSwipedData(swipedPosition: Int): MoviesEntity? = getItem(swipedPosition)
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {
-        val itemsAcademyBinding = ItemsTvShowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemsAcademyBinding = ItemsMoviesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CourseViewHolder(itemsAcademyBinding)
     }
 
@@ -41,18 +43,19 @@ class TvShowAdapter : PagedListAdapter<TvShowEntity, TvShowAdapter.CourseViewHol
         }
     }
 
-    class CourseViewHolder(private val binding: ItemsTvShowBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(tvShow: TvShowEntity) {
+
+    class CourseViewHolder(private val binding: ItemsMoviesBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(movies: MoviesEntity) {
             with(binding) {
-                tvItemTitle.text = tvShow.name
-                tvItemDescription.text = tvShow.overview
+                tvItemTitle.text = movies.title
+                tvItemDescription.text = movies.overview
                 itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
-                    intent.putExtra(DetailTvShowActivity.EXTRA_TV, tvShow.id.toString())
+                    val intent = Intent(itemView.context, DetailMovieActivity::class.java)
+                    intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movies.id.toString())
                     itemView.context.startActivity(intent)
                 }
                 Glide.with(itemView.context)
-                    .load("https://image.tmdb.org/t/p/w500"+tvShow.posterPath)
+                    .load("https://image.tmdb.org/t/p/w500"+movies.posterPath)
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
                             .error(R.drawable.ic_error))

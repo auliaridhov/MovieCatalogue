@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.academies.viewmodel.ViewModelFactory
 import com.tik.moviecatalogue.R
 import com.tik.moviecatalogue.databinding.FragmentMoviesBinding
+import com.tik.moviecatalogue.vo.Status
 
 
 class MoviesFragment : Fragment() {
@@ -30,20 +32,28 @@ class MoviesFragment : Fragment() {
             val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(this, factory)[MoviesViewModel::class.java]
 
+
             val moviesAdapter = MoviesAdapter()
-
-
-            fragmenMoviesBinding.progressBar.visibility = View.VISIBLE
             viewModel.getMovies().observe(this, { movies ->
-                fragmenMoviesBinding.progressBar.visibility = View.GONE
-                moviesAdapter.setMovies(movies)
-                moviesAdapter.notifyDataSetChanged()
-            })
+                if (movies != null) {
+                    when (movies.status) {
+                        Status.LOADING -> fragmenMoviesBinding?.progressBar?.visibility = View.VISIBLE
+                        Status.SUCCESS -> {
+                            fragmenMoviesBinding?.progressBar?.visibility = View.GONE
+                            moviesAdapter.submitList(movies.data)
 
-            with(fragmenMoviesBinding.rvMovies) {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(true)
-                adapter = moviesAdapter
+                        }
+                        Status.ERROR -> {
+                            fragmenMoviesBinding?.progressBar?.visibility = View.GONE
+                            Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            })
+            with(fragmenMoviesBinding?.rvMovies) {
+                this?.layoutManager = LinearLayoutManager(context)
+                this?.setHasFixedSize(true)
+                this?.adapter = moviesAdapter
             }
         }
     }

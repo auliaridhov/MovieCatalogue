@@ -6,4 +6,9 @@
     <string name="description">description</string>
     <string name="movies">Movies</string>
     <string name="tvshow">Tv Show</string>
+    <string name="fav_movie">Favorite Movie</string>
+    <string name="fav_tvshow">Favorite Tv Show</string>
+    <string name="menu_favorited">Favorited</string>
+    <string name="message_undo">Undo</string>
+    <string name="message_ok">Ok</string>
 </resources>

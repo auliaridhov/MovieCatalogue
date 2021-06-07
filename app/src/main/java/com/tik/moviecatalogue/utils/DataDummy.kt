@@ -1,10 +1,8 @@
 package com.tik.moviecatalogue.utils
 
-import android.media.tv.TvInputService
-import com.tik.moviecatalogue.data.MoviesEntity
-import com.tik.moviecatalogue.data.TvShowEntity
+import com.tik.moviecatalogue.data.source.local.entity.MoviesEntity
+import com.tik.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.tik.moviecatalogue.data.source.remote.response.MovieItem
-import com.tik.moviecatalogue.data.source.remote.response.MoviesResponse
 import com.tik.moviecatalogue.data.source.remote.response.TvShowItem
 import java.util.*
 
@@ -25,7 +23,6 @@ object DataDummy {
                 "Mortal Kombat",
                 false,
                 "Mortal Kombat",
-                genreIds,
                 "/nkayOAUBUu4mMvyNf9iHSUiPjF1.jpg",
                 "/6ELCZlTA5lGUops70hKdB83WJxH.jpg",
                 "2021-04-07",
@@ -43,7 +40,6 @@ object DataDummy {
                 "Godzilla vs. Kong",
                 false,
                 "Godzilla vs. Kong",
-                genreIds,
                 "/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg",
                 "/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg",
                 "2021-03-24",
@@ -61,7 +57,7 @@ object DataDummy {
                 "Nobody",
                 false,
                 "Nobody",
-                genreIds,
+
                 "/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg",
                 "/6zbKgwgaaCyyBXE4Sun4oWQfQmi.jpg",
                 "2021-03-26",
@@ -95,9 +91,8 @@ object DataDummy {
                 "2014-10-07",
                 "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \\\"meta-human\\\" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become...The Flash.",
                 "en",
-                genreIds,
+
                 "/lJA2RCMfsWoskqlQhXPSLFQGXEJ.jpg",
-                originCountry,
                 "/jeruqNWhqRqOR1QyqdQdHunrvU5.jpg",
                 "The Flash",
                 1067.857,
@@ -112,9 +107,9 @@ object DataDummy {
                 "2017-09-25",
                 "A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives",
                 "en",
-                genreIds,
+
                 "/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg",
-                originCountry,
+
                 "/mZjZgY6ObiKtVuKVDrnS9VnuNlE.jpg",
                 "The Good Doctor",
                 1087.176,
@@ -129,9 +124,7 @@ object DataDummy {
                 "2005-03-27",
                 "Follows the personal and professional lives of a group of doctors at Seattle’s Grey Sloan Memorial Hospital.",
                 "en",
-                genreIds,
                 "/clnyhPqj1SNgpAdeSS6a6fwE6Bo.jpg",
-                originCountry,
                 "/edmk8xjGBsYVIf4QtLY9WMaMcXZ.jpg",
                 "Grey's Anatomy",
                 774.332,

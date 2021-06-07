@@ -3,22 +3,30 @@ package com.tik.moviecatalogue.ui.movie
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.tik.moviecatalogue.R
-import com.tik.moviecatalogue.data.MoviesEntity
+import com.tik.moviecatalogue.data.source.local.entity.MoviesEntity
 import com.tik.moviecatalogue.databinding.ItemsMoviesBinding
 import java.util.ArrayList
 
-class MoviesAdapter  : RecyclerView.Adapter<MoviesAdapter.CourseViewHolder>() {
-    private var listMovies = ArrayList<MoviesEntity>()
 
-    fun setMovies(movies: List<MoviesEntity>?) {
-        if (movies == null) return
-        this.listMovies.clear()
-        this.listMovies.addAll(movies)
+class MoviesAdapter  : PagedListAdapter<MoviesEntity, MoviesAdapter.CourseViewHolder>(DIFF_CALLBACK)  {
+
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MoviesEntity>() {
+            override fun areItemsTheSame(oldItem: MoviesEntity, newItem: MoviesEntity): Boolean {
+                return oldItem.id == newItem.id
+            }
+            override fun areContentsTheSame(oldItem: MoviesEntity, newItem: MoviesEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {
         val itemsAcademyBinding = ItemsMoviesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -26,11 +34,12 @@ class MoviesAdapter  : RecyclerView.Adapter<MoviesAdapter.CourseViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
-        val course = listMovies[position]
-        holder.bind(course)
+        val course = getItem(position)
+        if (course != null) {
+            holder.bind(course)
+        }
     }
 
-    override fun getItemCount(): Int = listMovies.size
 
 
     class CourseViewHolder(private val binding: ItemsMoviesBinding) : RecyclerView.ViewHolder(binding.root) {
